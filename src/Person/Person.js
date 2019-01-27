@@ -1,9 +1,13 @@
 import React from 'react';
+import './Person.css';
 const person = (props) => {
+  // console.log(props);
   return (
-    <div>
+    <div className='person'>
       <h2 onClick={props.clicky}>I'm {props.name} and I'm {hamada()} years old. my real age is {props.age}</h2>
       <div>{props.children}</div>
+      <input type='text' onKeyUp={props.changey}/>
+      <hr/>
     </div>);
 }
 
