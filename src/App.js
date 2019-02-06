@@ -9,7 +9,8 @@ class App extends Component {
       {name: 'ahmed', age: 7},
       {name:'heba', age: 14},
       {name: 'kareem', age: 16}
-    ]
+    ],
+    showitems: false
   };
 
   switchNameHandler = (newname) =>{
@@ -30,6 +31,19 @@ class App extends Component {
         {name: 'kareem', age: 16}
       ]
     });
+  }
+  toggleShow = () =>{
+    // console.log('Hide');
+    let itemStatus = this.state.showitems;
+    this.setState({showitems: !itemStatus});
+    
+    // console printing
+    /*
+    if (itemStatus === true) {
+      console.log('Hide');
+    }else {
+      console.log('Show');
+    }*/
   }
 // styling the button from the class so i didn't need to right const or var or let
   buttonStyleOne = {
@@ -55,20 +69,25 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello World. How Are You?</h1>
-        <button onClick={() => this.switchNameHandler('ahmed idiotaaa!!')} style={this.buttonStyleOne}>Swith the name to idiontaaa!!</button>
+        <button onClick={this.toggleShow} style={this.buttonStyleOne}>Toggle items</button>
         <button onClick={this.switchNameHandler.bind(this, 'ahmed idiot')} style={buttonStyleTwo}>Swith name</button>
-        <Kareem
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          clicky={this.switchNameHandler.bind(this, 'ahmed Salem')}><span>This is a span in a div</span></Kareem>
-        <Kareem
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changey={this.typename}><span>This is a span in a div</span></Kareem>
-        <Kareem
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}><span>This is a span in a div</span></Kareem>
-        <Kareem/>
+        // Start the if statement
+        {this.state.showitems === true ?
+        <div>
+          <Kareem
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            clicky={this.switchNameHandler.bind(this, 'ahmed Salem')}><span>This is a span in a div</span></Kareem>
+          <Kareem
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            changey={this.typename}><span>This is a span in a div</span></Kareem>
+          <Kareem
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}><span>This is a span in a div</span></Kareem>
+          <Kareem/>
+        </div> : null}
+        // End the if statement
         <hr/>
         <Info name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <hr/>
