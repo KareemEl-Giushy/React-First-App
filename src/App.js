@@ -36,7 +36,7 @@ class App extends Component {
     // console.log('Hide');
     let itemStatus = this.state.showitems;
     this.setState({showitems: !itemStatus});
-    
+
     // console printing
     /*
     if (itemStatus === true) {
@@ -66,13 +66,10 @@ class App extends Component {
       margin: '0 0 0 5px',
       cursor: 'pointer'
     }
-    return (
-      <div className="App">
-        <h1>Hello World. How Are You?</h1>
-        <button onClick={this.toggleShow} style={this.buttonStyleOne}>Toggle items</button>
-        <button onClick={this.switchNameHandler.bind(this, 'ahmed idiot')} style={buttonStyleTwo}>Swith name</button>
-        // Start the if statement
-        {this.state.showitems === true ?
+
+    let rendering = null;
+    if (this.state.showitems){
+      rendering = (
         <div>
           <Kareem
             name={this.state.persons[0].name}
@@ -86,8 +83,17 @@ class App extends Component {
             name={this.state.persons[2].name}
             age={this.state.persons[2].age}><span>This is a span in a div</span></Kareem>
           <Kareem/>
-        </div> : null}
-        // End the if statement
+        </div>
+      );
+    }
+    return (
+      <div className="App">
+        <h1>Hello World. How Are You?</h1>
+        <button onClick={this.toggleShow} style={this.buttonStyleOne}>Toggle items</button>
+        <button onClick={this.switchNameHandler.bind(this, 'ahmed idiot')} style={buttonStyleTwo}>Swith name</button>
+
+        {rendering}
+
         <hr/>
         <Info name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <hr/>
